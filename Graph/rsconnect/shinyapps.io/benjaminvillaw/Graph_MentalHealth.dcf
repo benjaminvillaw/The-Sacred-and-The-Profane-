@@ -1,0 +1,12 @@
+name: Graph_MentalHealth
+title: Graph_MentalHealth
+username:
+account: benjaminvillaw
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2055192
+bundleId: 2967228
+url: https://benjaminvillaw.shinyapps.io/Graph_MentalHealth/
+when: 1585972588.25084
+asMultiple: FALSE
+asStatic: FALSE

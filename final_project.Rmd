@@ -1,0 +1,119 @@
+---
+title: "GOV 1005 Project"
+author: "Benjamin Villa"
+date: "2/28/2020"
+output: html_document
+---
+
+"benjaminvilla@mde.harvard.edu"
+
+GitHub Repo: https://github.com/benjaminvillaw/final_project
+GitHub Profile: https://github.com/benjaminvillaw
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(stringr)
+library(shiny)
+library(rsconnect)
+library(readxl)
+library(janitor)
+library(fivethirtyeight)
+
+#rsconnect::deployApp('/Users/BVW/BVW/Harvard/2019-2/Data/final_project/final_project/')
+
+```
+
+
+```{r, include=FALSE}
+
+FL_Mental <- read_excel("Data/Mental_Health_FL.xlsx") %>% 
+  clean_names() %>% 
+  slice(2:69) %>% 
+  select(x3,mental_health_providers) %>% 
+  type.convert(., na.strings = "NA", as.is = TRUE, dec = ".") %>% 
+  filter(!is.na(x3)) %>%
+  ggplot(aes(x=x3, y=mental_health_providers))+ geom_col() + theme(axis.text.x = element_text(angle = 90))
+
+FL_Mental
+FL_Mental + ggsave("Data/Graphs/plot.png")
+
+```
+
+
+```{r}
+
+FL_Mental
+
+filelist <- list.files(path="C:/Users/arush/Downloads/russian-troll-tweets-master/russian-troll-tweets-master", pattern="*.csv")
+for(i in 1:5) {
+file<-read_csv(paste0("C:/Users/arush/Downloads/russian-troll-tweets-master/russian-troll-tweets-master/", filelist[i]))
+if(i==1){
+  TweetFrame<-file
+  next
+}
+TweetFrame<-bind_rows(TweetFrame, file)
+ 
+ }
+
+
+https://github.com/arushisax/Final_Project/blob/master/gather.Rmd
+
+```
+
+
+
+# About
+
+This webapp is the final project for the GOV 1005. 
+
+## The Sacred and The Profane 
+
+The following project attempts to see if the number of psychiatrists per capita declines in counties where there is an abundant number of clergy per capita. Additionally, the project attempts to look for patterns, correlates, and distributions of clergy and of psychiatrists per capita throughout the United States. 
+
+Research papers include:
+
+“The clergy as a source of mental health assistance: What Americans Believe” by Christopher G. Ellison
+
+“Patterns and Correlates of Contacting Clergy for Mental Disorders in the United States” by Philip S. Wang & Patricia A Berglund
+
+‘Religiousness and mental health: a review’
+
+“The role of religion and spirituality in mental health”
+
+Key Counties to consider include Jefferson County, Alabama, where religious service attendance is 62.9% of the population, Graham County, Arizona, and Ouachita County Arkansas. 
+
+Key links to look into include:
+
+https://www.usatoday.com/story/news/2018/03/13/most-religious-counties-every-state-u-s/421946002/
+
+https://www.jstor.org/stable/20058132?seq=1
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1360908/
+
+https://journals.lww.com/co-psychiatry/Abstract/2014/09000/The_role_of_religion_and_spirituality_in_mental.9.aspx
+
+
+### Raw Data Sources
+
+The American Medical Association (AMA) Masterfile to calculate the number of psychiatrists, and psychiatric subspecialists practicing in the United States. Additionally, a study "Estimating the Distribution of the US Psychiatric Subespecialist Workforce" published in December 2018.
+
+To calculate the number of Clergy per county, the U.S. Bureau of Labor Statistics was consulted. The data available includes employment of clergy by county, published on May 2018.
+
+Country population has been taken from the United States Census Bureau.
+
+
+### The map and data explained:
+The following maps display the distribution of clergy and psychiatrists per 100,000 citizens in each county in the United States. 
+
+
+### Walk-Through Video:
+
+Watch the following video to understand the visualization:
+
+
+#### Created by:
+Benjamin Villa Wiesner, a student in the Master in Design Engineering program at Harvard University. 
+
+
